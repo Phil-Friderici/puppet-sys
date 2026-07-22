@@ -7,34 +7,46 @@
   "source": "git://github.com/counsyl/puppet-sys.git",
   "project_page": "https://github.com/counsyl/puppet-sys",
   "issues_url": "https://github.com/counsyl/puppet-sys/issues",
-  "description": "Common platform packages, resources and modules",
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 4.7.0 <5.0.0"}
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.7.0 <5.0.0"
+    }
   ],
   "operatingsystem_support": [
-      {
-          "operatingsystem": "CentOS"
-      },
-      {
-          "operatingsystem": "Darwin"
-      },
-      {
-          "operatingsystem": "Debian"
-      },
-      {
-          "operatingsystem": "OpenBSD"
-      },
-      {
-          "operatingsystem": "RedHat"
-      },
-      {
-          "operatingsystem": "Solaris"
-      },
-      {
-          "operatingsystem": "Ubuntu"
-      },
-      {
-          "operatingsystem": "windows"
-      }
-  ]
+    {
+      "operatingsystem": "CentOS"
+    },
+    {
+      "operatingsystem": "Darwin"
+    },
+    {
+      "operatingsystem": "Debian"
+    },
+    {
+      "operatingsystem": "OpenBSD"
+    },
+    {
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystem": "Solaris"
+    },
+    {
+      "operatingsystem": "Ubuntu"
+    },
+    {
+      "operatingsystem": "windows"
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 7.24 < 9.0.0"
+    }
+  ],
+  "description": "Common platform packages, resources and modules",
+  "pdk-version": "3.7.0",
+  "template-url": "pdk-default#3.7.0",
+  "template-ref": "tags/3.7.0-0-g80b36a5"
 }
