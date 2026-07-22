@@ -11,13 +11,13 @@ class sys::ubuntu::build_essential {
   }
 
   # Debian and Ubuntu have different names for kernel headers package.
-  if $::lsbdistid == 'Debian' {
-    $kernel_flavor = $::kernelrelease
+  if $facts['os']['distro']['id'] == 'Debian' {
+    $kernel_flavor = $facts['kernelrelease']
   } else {
     # Have to extract the "flavor" of the kernel from the $::kernelrelease
     # fact. For example: '2.6.32-40-generic' => 'generic'
     #                    '3.2.0-38-virtual'  => 'virtual'
-    $kernel_flavor = regsubst($::kernelrelease, '^.+\-(\w+)$', '\1')
+    $kernel_flavor = regsubst($facts['kernelrelease'], '^.+\-(\w+)$', '\1')
   }
   $kernel_headers = "linux-headers-${kernel_flavor}"
 

@@ -61,13 +61,13 @@
 #   192.168.0.80    db db-01 db-us
 #   192.168.0.100   web www
 #
-define sys::openbsd::hosts(
+define sys::openbsd::hosts (
   $networks,
   $owner    = 'root',
   $group    = 'wheel',
   $mode     = '0644',
   $template = 'sys/openbsd/hosts.erb',
-){
+) {
   validate_hash($networks)
 
   file { $title:

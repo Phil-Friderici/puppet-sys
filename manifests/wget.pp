@@ -9,9 +9,9 @@ class sys::wget (
   $source   = $sys::wget::params::source,
 ) inherits sys::wget::params {
   ensure_packages([$package], {
-    ensure   => $ensure,
-    alias    => 'wget',
-    provider => $provider,
-    source   => $source,
+      ensure   => $ensure,
+      alias    => 'wget',
+      provider => $provider,
+      source   => $source,
   })
 }

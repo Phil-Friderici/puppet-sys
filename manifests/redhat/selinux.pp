@@ -2,7 +2,7 @@
 #
 # Sets the SELinux enforcement policy.
 #
-define sys::redhat::selinux(
+define sys::redhat::selinux (
   $config      = '/etc/selinux/config',
   $selinuxtype = 'targeted',
   $template    = 'sys/redhat/selinux-config.erb',
@@ -17,7 +17,7 @@ define sys::redhat::selinux(
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => template($template)
+      content => template($template),
     }
 
     if $name == 'enabled' {

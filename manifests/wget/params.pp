@@ -3,15 +3,15 @@
 # Platform-dependent parameters for wget.
 #
 class sys::wget::params {
-  case $::osfamily {
-    openbsd: {
+  case $facts['os']['family'] {
+    'openbsd': {
       include sys::openbsd::pkg
       $package = 'wget'
       $path = '/usr/local/bin/wget'
       $provider = undef
       $source = $sys::openbsd::pkg::source
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $package = 'web/wget'
       $path = '/usr/bin/wget'

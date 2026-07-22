@@ -3,13 +3,12 @@
 # Module for Solaris 11 and Illumos derivatives (e.g., OpenIndiana, OmniOS).
 #
 class sys::solaris {
-  if $::osfamily != 'Solaris' or versioncmp($::kernelrelease, '5.11') < 0 {
+  if $facts['os']['family'] != 'Solaris' or versioncmp($facts['kernelversion'], '5.11') < 0 {
     fail('Only Solaris 11+ and Illumos kernels are supported.\n')
   }
-
   # Set parameters based on the Solaris kernel version.  Each variant
   # has different paths.
-  case $::kernelversion {
+  case $facts['kernelversion'] {
     /^omnios/: {
       $illumos = true
       $omnios = true

@@ -14,7 +14,7 @@
 #  Defaults to the same as `$name`, option used for overridding the
 #  UNIX mapping name when it should be different from $name.
 #
-define sys::solaris::idmap(
+define sys::solaris::idmap (
   $winname,
   $group    = false,
   $unixname = undef,
@@ -44,9 +44,9 @@ define sys::solaris::idmap(
   # mapping between the windows name and the unix name; notify the idmap
   # and smb/server services when this is done.
   exec { $exec_name:
-    path    => [ '/usr/sbin', '/bin', '/usr/bin'],
+    path    => ['/usr/sbin', '/bin', '/usr/bin'],
     command => "idmap ${idmap}",
     unless  => "idmap list | tr '\t' ' ' | grep '^${idmap}$'",
-    notify  => [ Service['system/idmap'], Service['network/smb/server'] ],
+    notify  => [Service['system/idmap'], Service['network/smb/server']],
   }
 }

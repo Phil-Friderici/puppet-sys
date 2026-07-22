@@ -15,14 +15,14 @@
 #  When a public key ID is used, retrieve from this keyserver.  Defaults
 #  to 'keyserver.ubuntu.com'.
 #
-define sys::apt::key(
+define sys::apt::key (
   $key    = $name,
   $ensure = 'present',
   $owner  = 'root',
   $group  = 'root',
   $mode   = '0644',
   $server = 'keyserver.ubuntu.com',
-){
+) {
   # Commands for adding and removing keys.
   $key_add = "apt-key adv --keyserver '${server}' --recv-keys '${key}'"
   $key_del = "apt-key del ${key}"

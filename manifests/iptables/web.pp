@@ -23,13 +23,13 @@
 # [*source*]
 #  Source for firewall resources, default is undefined.
 #
-class sys::iptables::web(
+class sys::iptables::web (
   $http_port  = '80',
   $https_port = '443',
   $iniface    = undef,
   $priority   = '100',
   $source     = undef,
-){
+) {
   include sys::iptables
 
   if $http_port {

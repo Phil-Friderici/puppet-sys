@@ -3,16 +3,16 @@
 # Platform-dependent parameters for sysstat.
 #
 class sys::stat::params {
-  case $::osfamily {
-    darwin, openbsd, solaris: {
+  case $facts['os']['family'] {
+    'darwin', 'openbsd', 'solaris': {
       # Unix-derived systems have iostat built in.
       $package = false
     }
-    debian, redhat: {
+    'debian', 'redhat': {
       $package = 'sysstat'
     }
     default: {
-      fail("Don't know how to install sysstat on ${::osfamily}.\n")
+      fail("Don't know how to install sysstat on ${facts['os']['family']}.\n")
     }
   }
 }

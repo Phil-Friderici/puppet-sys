@@ -33,7 +33,7 @@
 # [*user*]
 #  The `user` value for the fetching `exec` resource, defaults is undefined.
 #
-define sys::fetch(
+define sys::fetch (
   $destination,
   $source       = $name,
   $redownload   = true,
@@ -43,8 +43,7 @@ define sys::fetch(
   $timeout      = '0',
   $user         = undef,
 ) {
-
-  if ($redownload and $::osfamily != 'windows') {
+  if ($redownload and $facts['os']['family'] != 'windows') {
     $unless  = "test -s ${destination}"
     $creates = undef
   } else {
@@ -52,8 +51,8 @@ define sys::fetch(
     $creates = $destination
   }
 
-  case $::osfamily {
-    darwin: {
+  case $facts['os']['family'] {
+    'darwin': {
       # Use cURL on OS X.
       if $cert_check {
         $cert_check_opt = ''
@@ -64,7 +63,7 @@ define sys::fetch(
       $dl_cmd = '/usr/bin/curl --silent --location'
       $provider = undef
     }
-    windows: {
+    'windows': {
       # Use PowerShell provider (via joshcooper's powershell module).
       $provider = 'powershell'
     }
@@ -83,7 +82,7 @@ define sys::fetch(
     }
   }
 
-  if $::osfamily == 'windows' {
+  if $facts['os']['family'] == 'windows' {
     $command = "(New-Object Net.WebClient).DownloadFile('${source}', '${destination}')"
   } else {
     # Constructing download options string using stdlib's `join` function.

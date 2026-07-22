@@ -20,13 +20,13 @@
 # [*cache*]
 #  The path to the apt cache, defaults to '/var/cache/apt'.
 #
-class sys::apt(
+class sys::apt (
   $root      = '/etc/apt',
   $provider  = '/usr/bin/apt-get',
   $dpkg_opts = '-o DPkg::Options="--force-confold"',
   $cache     = '/var/cache/apt',
-){
-  if $::osfamily != 'Debian' {
+) {
+  if $facts['os']['family'] != 'Debian' {
     fail("This class only supported on Debian-based platforms.\n")
   }
 

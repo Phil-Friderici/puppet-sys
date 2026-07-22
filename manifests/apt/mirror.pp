@@ -13,55 +13,55 @@
 #  Whether or not to include the debian source package repositories.
 #  Defaults to true.
 #
-class sys::apt::mirror(
+class sys::apt::mirror (
   $uri    = 'http://us.archive.ubuntu.com/ubuntu/',
   $source = true,
-){
+) {
   include sys::apt::update
   $repositories = [
     {
       'uri'          => $uri,
-      'distribution' => $::lsbdistcodename,
+      'distribution' => $facts['os']['distro']['codename'],
       'components'   => ['main', 'restricted'],
     },
     {
       'uri'          => $uri,
-      'distribution' => "${::lsbdistcodename}-updates",
+      'distribution' => "${facts['os']['distro']['codename']}-updates",
       'components'   => ['main', 'restricted'],
     },
     {
       'uri'          => $uri,
-      'distribution' => $::lsbdistcodename,
+      'distribution' => $facts['os']['distro']['codename'],
       'components'   => 'universe',
     },
     {
       'uri'          => $uri,
-      'distribution' => "${::lsbdistcodename}-updates",
+      'distribution' => "${facts['os']['distro']['codename']}-updates",
       'components'   => 'universe',
     },
     {
       'uri'          => $uri,
-      'distribution' => $::lsbdistcodename,
+      'distribution' => $facts['os']['distro']['codename'],
       'components'   => 'multiverse',
     },
     {
       'uri'          => $uri,
-      'distribution' => "${::lsbdistcodename}-updates",
+      'distribution' => "${facts['os']['distro']['codename']}-updates",
       'components'   => 'multiverse',
     },
     {
       'uri'          => $uri,
-      'distribution' => "${::lsbdistcodename}-security",
+      'distribution' => "${facts['os']['distro']['codename']}-security",
       'components'   => ['main', 'restricted'],
     },
     {
       'uri'          => $uri,
-      'distribution' => "${::lsbdistcodename}-security",
+      'distribution' => "${facts['os']['distro']['codename']}-security",
       'components'   => 'universe',
     },
     {
       'uri'          => $uri,
-      'distribution' => "${::lsbdistcodename}-security",
+      'distribution' => "${facts['os']['distro']['codename']}-security",
       'components'   => 'multiverse',
     },
   ]

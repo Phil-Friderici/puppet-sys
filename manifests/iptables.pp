@@ -23,13 +23,13 @@
 # [*iniface*]
 #  Interface to apply iptables to, default is undefined.
 #
-class sys::iptables(
+class sys::iptables (
   $ssh_port = '22',
   $ping     = true,
   $lo       = true,
   $iniface  = undef,
   $purge    = true,
-){
+) {
   if ! defined('firewall') {
     fail("sys::iptables requires puppetlabs-firewall module\n")
   }

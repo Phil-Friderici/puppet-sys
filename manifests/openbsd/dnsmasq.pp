@@ -44,13 +44,13 @@
 #     forwarders => [ '192.168.10.1', '192.168.10.2' ],
 #   }
 #
-class sys::openbsd::dnsmasq(
+class sys::openbsd::dnsmasq (
   $networks,
   $authoritative      = false,
   $config             = '/etc/dnsmasq.conf',
   $cache_size         = '750',
   $default_lease      = '24h',
-  $domain             = $::domain,
+  $domain             = $facts['networking']['domain'],
   $expand_hosts       = true,
   $etc_hosts          = '/etc/hosts',
   $except_interfaces  = [],

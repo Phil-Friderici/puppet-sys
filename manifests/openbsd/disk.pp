@@ -42,7 +42,7 @@
 #  the disk, defaults to 600 seconds (10 minutes).  This may need to be set
 #  higher for especially large disks.
 #
-define sys::openbsd::disk(
+define sys::openbsd::disk (
   $size,
   $device           = $title,
   $sectors_cylinder = 16065,
@@ -56,8 +56,7 @@ define sys::openbsd::disk(
   # 1GB <= size <= 8TB
   validate_integer($size, 8192, 1)
 
-  validate_integer([$bytes_sector, $sectors_cylinder, $sectors_track,
-                    $timeout, $tracks_cylinder])
+  validate_integer([$bytes_sector, $sectors_cylinder, $sectors_track, $timeout, $tracks_cylinder])
 
   # Calculate number of sectors and cylinders.
   $sectors = ($size * 1024 * 1024 * 1024) / $bytes_sector

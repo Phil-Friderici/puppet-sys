@@ -3,39 +3,44 @@
 # Platform-dependent parameters for SSH.
 #
 class sys::ssh::params {
-  case $::osfamily {
-    darwin: {
+  case $facts['os']['family'] {
+    'darwin': {
       $client = false
       $server = false
+      $provider = undef
+      $sandbox = undef
     }
-    openbsd: {
+    'openbsd': {
       # Installed by default on OpenBSD
       $client = false
       $server = false
       $sftp_subsystem = '/usr/libexec/sftp-server'
       $use_pam = false
+      $provider = undef
 
-      if versioncmp($::kernelmajversion, '5.0') >= 0 {
+      # kernelmajversion wasn't converted, we can rebuild it from kernelversion
+      $kernelmajversion = Integer(split($facts['kernelversion'], '\.')[0])
+      if versioncmp($kernelmajversion, '5.0') >= 0 {
         $ecdsa = true
         $sandbox = true
       } else {
         $ecdsa = false
       }
 
-      if versioncmp($::kernelmajversion, '5.5') >= 0 {
+      if versioncmp($kernelmajversion, '5.5') >= 0 {
         $ed25519 = true
       } else {
         $ed25519 = false
       }
 
-      if versioncmp($::kernelmajversion, '5.7') >= 0 {
+      if versioncmp($kernelmajversion, '5.7') >= 0 {
         $service = 'sshd'
       } else {
         $service = false
       }
     }
-    solaris: {
-      if $::operatingsystemrelease < '5.11' {
+    'solaris': {
+      if $facts['os']['release']['full'] < '5.11' {
         fail("SSH module supported only on Solaris 5.11 and above.\n")
       }
       $client = 'network/ssh'
@@ -46,9 +51,10 @@ class sys::ssh::params {
       $use_pam = false
       $ecdsa = false
       $ed25519 = false
+      $sandbox = undef
     }
-    debian: {
-      if $::operatingsystem == 'Ubuntu' {
+    'debian': {
+      if $facts['os']['name'] == 'Ubuntu' {
         $ecdsa_compare = '12'
         $ed25519_compare = '14'
       } else {
@@ -58,7 +64,7 @@ class sys::ssh::params {
 
       # Facter 2.2+ changed lsbmajdistrelease fact, e.g., now returns
       # '12.04' instead of '12' on Ubuntu precise.
-      $lsb_major_release = regsubst($::lsbmajdistrelease, '^(\d+).*', '\1')
+      $lsb_major_release = regsubst($facts['os']['distro']['release']['major'], '^(\d+).*', '\1')
 
       # ECDSA supported in Ubuntu 12.04 / Debian 7 and up.
       if versioncmp($lsb_major_release, $ecdsa_compare) >= 0 {
@@ -80,8 +86,10 @@ class sys::ssh::params {
       $sftp_subsystem = '/usr/lib/openssh/sftp-server'
       # Necessary for motd (seriously) to work.
       $use_pam = true
+      $provider = undef
+      $sandbox = undef
     }
-    redhat: {
+    'redhat': {
       $client = 'openssh-clients'
       $server = 'openssh-server'
       $service = 'sshd'
@@ -89,15 +97,17 @@ class sys::ssh::params {
       $use_pam = true
       $ecdsa = false
       $ed25519 = false
+      $provider = undef
+      $sandbox = undef
     }
     default: {
-      fail("The SSH module is not supported on ${::osfamily}.\n")
+      fail("The SSH module is not supported on ${facts['os']['family']}.\n")
     }
   }
 
   # Configuration file locations.  Macs are the special snowflake here.
-  case $::osfamily {
-    darwin: {
+  case $facts['os']['family'] {
+    'darwin': {
       $ssh_config  = '/etc/ssh_config'
       $sshd_config = '/etc/sshd_config'
     }

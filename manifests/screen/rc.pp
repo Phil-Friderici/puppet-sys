@@ -29,12 +29,12 @@
 #  Advanced usage only.  The template to use when generating the screen
 #  resource file, defaults to "sys/screen/${::osfamily}.erb".
 #
-define sys::screen::rc(
+define sys::screen::rc (
   $ensure   = 'present',
   $group    = undef,
   $home     = undef,
   $extra    = undef,
-  $template = "sys/screen/${::osfamily}.erb",
+  $template = "sys/screen/${facts['os']['family']}.erb",
 ) {
   include sys::screen
 

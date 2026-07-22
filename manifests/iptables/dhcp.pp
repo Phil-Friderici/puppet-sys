@@ -18,12 +18,12 @@
 # [*source*]
 #  Source for firewall resources, default is undefined.
 #
-class sys::iptables::dhcp(
+class sys::iptables::dhcp (
   $udp_ports = '67-68',
   $iniface   = undef,
   $priority  = '100',
   $source    = undef,
-){
+) {
   include sys::iptables
 
   firewall { "${priority} allow dhcp udp":

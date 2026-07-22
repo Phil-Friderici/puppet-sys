@@ -7,13 +7,13 @@ class sys::rsync::params inherits sys {
   $package = 'rsync'
   $service = 'rsync'
 
-  case $::osfamily {
-    openbsd: {
+  case $facts['os']['family'] {
+    'openbsd': {
       include sys::openbsd::pkg
       $provider = undef
       $source = $sys::openbsd::pkg::source
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $provider = 'pkg'
       $source = undef

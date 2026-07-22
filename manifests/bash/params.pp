@@ -3,40 +3,52 @@
 # Platform-dependent parameters for the bash shell.
 #
 class sys::bash::params {
-  case $::osfamily {
-    darwin: {
+  case $facts['os']['family'] {
+    'darwin': {
       # Bash is included by default on OS X.
+      $source  = undef
+      $provider = undef
+      $extras  = undef
       $package = false
       $path    = '/bin/bash'
       $defpath = '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin'
     }
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $source  = $sys::openbsd::pkg::source
+      $provider = undef
       $extras  = 'colorls'
       $package = 'bash'
       $path    = '/usr/local/bin/bash'
       $defpath = '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/libexec'
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
+      $source  = undef
+      $extras  = undef
       $provider = 'pkg'
       $package  = 'shell/bash'
       $path     = '/usr/bin/bash'
       $defpath  = $sys::solaris::path
     }
-    redhat: {
+    'redhat': {
+      $source  = undef
+      $provider = undef
+      $extras  = undef
       $package  = 'bash'
       $path     = '/bin/bash'
       $defpath  = '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
     }
-    debian: {
+    'debian': {
+      $source  = undef
+      $provider = undef
+      $extras  = undef
       $package  = 'bash'
       $path     = '/bin/bash'
       $defpath  = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
     }
     default: {
-      fail("Don't know how to install bash on ${::osfamily}.\n")
+      fail("Don't know how to install bash on ${facts['os']['family']}.\n")
     }
   }
 }

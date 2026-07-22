@@ -3,7 +3,7 @@
 # This class creates an `exec` resource, named "apt-update" that may be
 # used to receive notifications prior to package installation.
 #
-class sys::apt::update(
+class sys::apt::update (
   $exec_name   = 'apt-update',
   $logoutput   = 'on_failure',
   $refreshonly = true,

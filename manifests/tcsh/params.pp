@@ -3,33 +3,33 @@
 # Platform-dependent parameters for tcsh.
 #
 class sys::tcsh::params {
-  case $::osfamily {
-    darwin: {
+  case $facts['os']['family'] {
+    'darwin': {
       $package = false
       $path    = '/bin/tcsh'
     }
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $package = 'tcsh'
       $path    = '/usr/local/bin/tcsh'
       $source  = $sys::openbsd::pkg::source
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $provider = 'pkg'
       $package  = 'shell/tcsh'
       $path     = '/usr/bin/tcsh'
     }
-    redhat: {
+    'redhat': {
       $package = 'tcsh'
       $path    = '/bin/tcsh'
     }
-    debian: {
+    'debian': {
       $package = 'tcsh'
       $path    = '/bin/tcsh'
     }
     default: {
-      fail("Don't know how to install bash on ${::osfamily}.\n")
+      fail("Don't know how to install bash on ${facts['os']['family']}.\n")
     }
   }
 }

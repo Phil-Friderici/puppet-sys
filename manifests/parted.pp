@@ -11,11 +11,11 @@
 #  The name of the package to install; the default depends on the OS, most
 #  likely it is 'parted'.
 #
-class sys::parted(
+class sys::parted (
   $ensure  = 'installed',
   $package = $sys::parted::params::package,
 ) inherits sys::parted::params {
   package { $package:
-    ensure   => $ensure,
+    ensure => $ensure,
   }
 }

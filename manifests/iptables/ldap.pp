@@ -10,7 +10,7 @@
 #  The TCP port for LDAP traffic, defaults to 389.  Set to false to disable
 #  LDAP traffic entirely.
 #
-# [*ldaps_port*]
+# [*ssl_port*]
 #  The TCP port for LDAPS traffic, defaults to 636.  Set to false to disable
 #  LDAPS traffic entirely.
 #
@@ -23,13 +23,13 @@
 # [*source*]
 #  Source for firewall resources, default is undefined.
 #
-class sys::iptables::ldap(
+class sys::iptables::ldap (
   $port     = '389',
   $ssl_port = '636',
   $iniface  = undef,
   $priority = '100',
   $source   = undef,
-){
+) {
   include sys::iptables
 
   if $port {
