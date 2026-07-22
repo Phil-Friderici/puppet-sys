@@ -74,9 +74,12 @@ define sys::inifile(
   $mode     = '0644',
   $template = 'sys/inifile/inifile.erb',
 ) {
-  validate_absolute_path($title)
-  validate_hash($config)
-  validate_integer($indent)
+#  validate_absolute_path($title)
+#  validate_hash($config)
+
+  assert_type(Stdlib::Absolutepath, $title)
+  assert_type(Hash, $config)
+  assert_type(Integer, $indent)
 
   file { $title:
     ensure  => file,

@@ -8,17 +8,35 @@ class sys::git::params {
       include sys::openbsd::pkg
       $package  = 'git'
       $source   = $sys::openbsd::pkg::source
+      $provider = undef
+      $install_options = undef
+      $base_url = undef
+      $win_path = undef
     }
     solaris: {
       include sys::solaris
       $package  = 'developer/versioning/git'
       $provider = 'pkg'
+      $source   = undef
+      $install_options = undef
+      $base_url = undef
+      $win_path = undef
     }
     debian: {
       $package  = 'git-core'
+      $provider = undef
+      $source   = undef
+      $install_options = undef
+      $base_url = undef
+      $win_path = undef
     }
     redhat: {
       $package  = 'git-core'
+      $provider = undef
+      $source   = undef
+      $install_options = undef
+      $base_url = undef
+      $win_path = undef
     }
     windows: {
       $version = '2.5.0'
@@ -34,6 +52,8 @@ class sys::git::params {
       $package = "Git version ${version}"
       $install_options = ['/VERYSILENT']
       $win_path = 'C:\Program Files\Git\cmd'
+      $provider = undef
+      $source   = undef
     }
     default: {
       fail("Do not know how to install git on ${facts['os']['family']}.\n")

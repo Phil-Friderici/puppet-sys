@@ -7,6 +7,8 @@ class sys::ssh::params {
     darwin: {
       $client = false
       $server = false
+      $provider = undef
+      $sandbox = undef
     }
     openbsd: {
       # Installed by default on OpenBSD
@@ -14,6 +16,7 @@ class sys::ssh::params {
       $server = false
       $sftp_subsystem = '/usr/libexec/sftp-server'
       $use_pam = false
+      $provider = undef
 
       if versioncmp($::kernelmajversion, '5.0') >= 0 {
         $ecdsa = true
@@ -46,6 +49,7 @@ class sys::ssh::params {
       $use_pam = false
       $ecdsa = false
       $ed25519 = false
+      $sandbox = undef
     }
     debian: {
       if $facts['os']['name'] == 'Ubuntu' {
@@ -80,6 +84,8 @@ class sys::ssh::params {
       $sftp_subsystem = '/usr/lib/openssh/sftp-server'
       # Necessary for motd (seriously) to work.
       $use_pam = true
+      $provider = undef
+      $sandbox = undef
     }
     redhat: {
       $client = 'openssh-clients'
@@ -89,6 +95,8 @@ class sys::ssh::params {
       $use_pam = true
       $ecdsa = false
       $ed25519 = false
+      $provider = undef
+      $sandbox = undef
     }
     default: {
       fail("The SSH module is not supported on ${facts['os']['family']}.\n")

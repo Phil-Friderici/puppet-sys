@@ -7,12 +7,18 @@ class sys::tmux::params {
     openbsd: {
       # tmux included by default
       $package = false
+      $provider = undef
+      $source = undef
     }
     debian: {
       $package = 'tmux'
+      $provider = undef
+      $source = undef
     }
     redhat: {
       $package = 'tmux'
+      $provider = undef
+      $source = undef
     }
     default: {
       fail("Do not know how to install tmux on ${facts['os']['family']}.")

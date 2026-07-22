@@ -169,17 +169,29 @@ class sys::ssh(
   $use_dns                      = true,
   $x11_forwarding               = false,
 ){
-  validate_array(
-    $acceptenv, $ciphers, $host_key_algorithms,
-    $kex_algorithms, $macs
-  )
-  validate_bool(
-    $agent_forwarding, $challenge_response, $empty_passwords, $password_auth,
-    $privilege_separation, $pubkey_auth, $root_login, $rsa_auth, $sftp,
-    $strict_modes, $tcp_forwarding, $tcp_keepalive, $use_dns, $x11_forwarding
-  )
-  validate_integer($port)
-  validate_integer($login_grace_time)
+  assert_type(Array, $acceptenv)
+  assert_type(Array, $ciphers)
+  assert_type(Array, $host_key_algorithms)
+  assert_type(Array, $kex_algorithms)
+  assert_type(Array, $macs)
+
+  assert_type(Boolean, $agent_forwarding)
+  assert_type(Boolean, $challenge_response)
+  assert_type(Boolean, $empty_passwords)
+  assert_type(Boolean, $password_auth)
+  assert_type(Boolean, $privilege_separation)
+  assert_type(Boolean, $pubkey_auth)
+  assert_type(Boolean, $root_login)
+  assert_type(Boolean, $rsa_auth)
+  assert_type(Boolean, $sftp)
+  assert_type(Boolean, $strict_modes)
+  assert_type(Boolean, $tcp_forwarding)
+  assert_type(Boolean, $tcp_keepalive)
+  assert_type(Boolean, $use_dns)
+  assert_type(Boolean, $x11_forwarding)
+
+  assert_type(Integer, $port)
+  assert_type(Integer, $login_grace_time)
 
   anchor { 'sys::ssh::start': }  ->
   class { 'sys::ssh::install': } ->

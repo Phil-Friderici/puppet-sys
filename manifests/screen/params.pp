@@ -7,6 +7,7 @@ class sys::screen::params {
     openbsd: {
       include sys::openbsd::pkg
       $package = 'screen'
+      $source = undef
       if versioncmp($::kernelmajversion, '5.5') >= 0 {
         $ensure = '4.0.3p4'
       } elsif versioncmp($::kernelmajversion, '5.3') >= 0 {
@@ -20,10 +21,13 @@ class sys::screen::params {
       $ensure = 'installed'
       $package = 'terminal/screen'
       $provider = 'pkg'
+      $source = undef
     }
     default: {
       $ensure = 'installed'
       $package = 'screen'
+      $provider = undef
+      $source = undef
     }
   }
 }

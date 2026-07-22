@@ -8,22 +8,29 @@ class sys::nfs::params {
       # NFS client and server built-in to OS X.
       $client = false
       $server = false
+      $source = undef
+      $provider = undef
     }
     debian: {
       # Debian splits up NFS into common/server packages.
       $client = 'nfs-common'
       $server = 'nfs-kernel-server'
+      $source = undef
+      $provider = undef
     }
     redhat: {
       # RedHat has everything in one package.
       $client = 'nfs-utils'
       $server = false
+      $source = undef
+      $provider = undef
     }
     solaris: {
       # NFS client built into Solaris.
       $client = false
       $server = 'service/file-system/nfs'
       $provider = 'pkg'
+      $source = undef
     }
     default: {
       fail("Do not know how to install NFS on ${facts['os']['family']}\n")
