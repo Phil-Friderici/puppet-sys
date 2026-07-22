@@ -19,7 +19,7 @@
 # [*source*]
 #  The source to use for the package; the default is undef.
 #
-class sys::screen(
+class sys::screen (
   $ensure   = $sys::screen::params::ensure,
   $package  = $sys::screen::params::package,
   $provider = $sys::screen::params::provider,

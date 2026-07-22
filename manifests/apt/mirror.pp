@@ -13,10 +13,10 @@
 #  Whether or not to include the debian source package repositories.
 #  Defaults to true.
 #
-class sys::apt::mirror(
+class sys::apt::mirror (
   $uri    = 'http://us.archive.ubuntu.com/ubuntu/',
   $source = true,
-){
+) {
   include sys::apt::update
   $repositories = [
     {

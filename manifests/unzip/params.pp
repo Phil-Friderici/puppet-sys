@@ -4,20 +4,20 @@
 #
 class sys::unzip::params {
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       $package = false
       $path = '/usr/bin/unzip'
       $provider = undef
       $source = undef
     }
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $package = 'unzip'
       $path = '/usr/local/bin/unzip'
       $provider = undef
       $source = $sys::openbsd::pkg::source
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $package = 'compress/unzip'
       $path = '/usr/bin/unzip'

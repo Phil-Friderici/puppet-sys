@@ -13,11 +13,10 @@
 # [*sysctl*]
 #  Path to the sysctl configuration file.  Defaults to '/etc/sysctl.conf'.
 #
-class sys::ubuntu::ipv6(
+class sys::ubuntu::ipv6 (
   $ensure = 'disabled',
   $sysctl = '/etc/sysctl.conf',
 ) {
-
   case $ensure {
     'enabled', 'installed': {
       $status = '0'

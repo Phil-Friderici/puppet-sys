@@ -4,7 +4,7 @@
 #
 class sys::bash::params {
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       # Bash is included by default on OS X.
       $source  = undef
       $provider = undef
@@ -13,7 +13,7 @@ class sys::bash::params {
       $path    = '/bin/bash'
       $defpath = '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin'
     }
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $source  = $sys::openbsd::pkg::source
       $provider = undef
@@ -22,7 +22,7 @@ class sys::bash::params {
       $path    = '/usr/local/bin/bash'
       $defpath = '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/libexec'
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $source  = undef
       $extras  = undef
@@ -31,7 +31,7 @@ class sys::bash::params {
       $path     = '/usr/bin/bash'
       $defpath  = $sys::solaris::path
     }
-    redhat: {
+    'redhat': {
       $source  = undef
       $provider = undef
       $extras  = undef
@@ -39,7 +39,7 @@ class sys::bash::params {
       $path     = '/bin/bash'
       $defpath  = '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
     }
-    debian: {
+    'debian': {
       $source  = undef
       $provider = undef
       $extras  = undef

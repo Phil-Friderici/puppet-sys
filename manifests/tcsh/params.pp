@@ -4,27 +4,27 @@
 #
 class sys::tcsh::params {
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       $package = false
       $path    = '/bin/tcsh'
     }
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $package = 'tcsh'
       $path    = '/usr/local/bin/tcsh'
       $source  = $sys::openbsd::pkg::source
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $provider = 'pkg'
       $package  = 'shell/tcsh'
       $path     = '/usr/bin/tcsh'
     }
-    redhat: {
+    'redhat': {
       $package = 'tcsh'
       $path    = '/bin/tcsh'
     }
-    debian: {
+    'debian': {
       $package = 'tcsh'
       $path    = '/bin/tcsh'
     }

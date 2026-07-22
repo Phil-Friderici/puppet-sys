@@ -4,7 +4,7 @@
 #
 class sys::git::params {
   case $facts['os']['family'] {
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $package  = 'git'
       $source   = $sys::openbsd::pkg::source
@@ -13,7 +13,7 @@ class sys::git::params {
       $base_url = undef
       $win_path = undef
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $package  = 'developer/versioning/git'
       $provider = 'pkg'
@@ -22,7 +22,7 @@ class sys::git::params {
       $base_url = undef
       $win_path = undef
     }
-    debian: {
+    'debian': {
       $package  = 'git-core'
       $provider = undef
       $source   = undef
@@ -30,7 +30,7 @@ class sys::git::params {
       $base_url = undef
       $win_path = undef
     }
-    redhat: {
+    'redhat': {
       $package  = 'git-core'
       $provider = undef
       $source   = undef
@@ -38,7 +38,7 @@ class sys::git::params {
       $base_url = undef
       $win_path = undef
     }
-    windows: {
+    'windows': {
       $version = '2.5.0'
       $release_tag = "v${version}.windows.1"
       $base_url = "https://github.com/git-for-windows/git/releases/download/${release_tag}/"

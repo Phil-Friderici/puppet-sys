@@ -7,8 +7,8 @@ describe 'sys::iptables' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
-      # FIXME: This module expects an old version of the firewall module and isn't compatible with latest version !!!
-      # it { is_expected.to compile.with_all_deps }
+      # FIXME: This module expects an old version of the firewall module and this isn't compatible with latest version !!!
+      it { is_expected.not_to compile.with_all_deps }
     end
   end
 end

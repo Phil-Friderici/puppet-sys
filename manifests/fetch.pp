@@ -33,7 +33,7 @@
 # [*user*]
 #  The `user` value for the fetching `exec` resource, defaults is undefined.
 #
-define sys::fetch(
+define sys::fetch (
   $destination,
   $source       = $name,
   $redownload   = true,
@@ -43,7 +43,6 @@ define sys::fetch(
   $timeout      = '0',
   $user         = undef,
 ) {
-
   if ($redownload and $facts['os']['family'] != 'windows') {
     $unless  = "test -s ${destination}"
     $creates = undef
@@ -53,7 +52,7 @@ define sys::fetch(
   }
 
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       # Use cURL on OS X.
       if $cert_check {
         $cert_check_opt = ''
@@ -64,7 +63,7 @@ define sys::fetch(
       $dl_cmd = '/usr/bin/curl --silent --location'
       $provider = undef
     }
-    windows: {
+    'windows': {
       # Use PowerShell provider (via joshcooper's powershell module).
       $provider = 'powershell'
     }

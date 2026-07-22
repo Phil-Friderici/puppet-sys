@@ -133,10 +133,10 @@
 # [*x11_forwarding*]
 #  Allows X11 forwarding by the SSH daemon, defaults to false.
 #
-class sys::ssh(
+class sys::ssh (
   $port                         = 22,
   $listen_address               = undef,
-  $acceptenv                    = [ 'LANG', 'LC_*' ],
+  $acceptenv                    = ['LANG', 'LC_*'],
   $agent_forwarding             = false,
   $allowusers                   = false,
   $allowgroups                  = false,
@@ -168,7 +168,7 @@ class sys::ssh(
   $trusted_user_ca_keys         = false,
   $use_dns                      = true,
   $x11_forwarding               = false,
-){
+) {
   assert_type(Array, $acceptenv)
   assert_type(Array, $ciphers)
   assert_type(Array, $host_key_algorithms)
@@ -193,9 +193,9 @@ class sys::ssh(
   assert_type(Integer, $port)
   assert_type(Integer, $login_grace_time)
 
-  anchor { 'sys::ssh::start': }  ->
-  class { 'sys::ssh::install': } ->
-  class { 'sys::ssh::config': }  ->
-  class { 'sys::ssh::service': } ->
-  anchor { 'sys::ssh::end': }
+  anchor { 'sys::ssh::start': }
+  -> class { 'sys::ssh::install': }
+  -> class { 'sys::ssh::config': }
+  -> class { 'sys::ssh::service': }
+  -> anchor { 'sys::ssh::end': }
 }

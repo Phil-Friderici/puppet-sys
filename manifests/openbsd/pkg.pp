@@ -10,7 +10,6 @@ class sys::openbsd::pkg (
   $config = '/etc/pkg.conf',
   $source = $sys::openbsd::params::mirror,
 ) inherits sys::openbsd::params {
-
   # `/etc/pkg.conf` sets settings system-wide for the `pkg_*`
   # utilities on OpenBSD; it eliminates the need for setting
   # PKG_PATH environment variable.

@@ -39,7 +39,7 @@
 #      }
 #    }
 #
-class sys::ubuntu::network(
+class sys::ubuntu::network (
   $interfaces,
   $defaults        = {
     'family'  => 'inet',
@@ -49,7 +49,7 @@ class sys::ubuntu::network(
   },
   $interfaces_file = '/etc/network/interfaces',
   $template        = 'sys/ubuntu/interfaces.erb'
-){
+) {
   file { $interfaces_file:
     owner   => 'root',
     group   => 'root',

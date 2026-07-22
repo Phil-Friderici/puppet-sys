@@ -2,12 +2,11 @@
 #
 # Creates the SSH daemon and client configuration files.
 #
-class sys::ssh::config(
+class sys::ssh::config (
   $sshd_config   = $sys::ssh::params::sshd_config,
   $sshd_template = 'sys/ssh/sshd_config.erb',
   $mode          = '0600',
 ) inherits sys::ssh::params {
-
   include sys
 
   if $sys::ssh::privilege_separation {

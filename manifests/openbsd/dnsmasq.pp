@@ -44,7 +44,7 @@
 #     forwarders => [ '192.168.10.1', '192.168.10.2' ],
 #   }
 #
-class sys::openbsd::dnsmasq(
+class sys::openbsd::dnsmasq (
   $networks,
   $authoritative      = false,
   $config             = '/etc/dnsmasq.conf',

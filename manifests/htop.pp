@@ -11,7 +11,7 @@
 #  The name of the package to install; the default depends on the OS, most
 #  likely it is 'htop'.
 #
-class sys::htop(
+class sys::htop (
   $ensure  = 'installed',
   $package = $sys::htop::params::package,
 ) inherits sys::htop::params {

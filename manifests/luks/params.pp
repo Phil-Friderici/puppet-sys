@@ -4,10 +4,10 @@
 #
 class sys::luks::params {
   case $facts['os']['family'] {
-    debian: {
+    'debian': {
       $package = 'cryptsetup'
     }
-    redhat: {
+    'redhat': {
       case $facts['os']['release']['major'] {
         7: {
           $package = 'cryptsetup'

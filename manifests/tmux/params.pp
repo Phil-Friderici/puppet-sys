@@ -4,18 +4,18 @@
 #
 class sys::tmux::params {
   case $facts['os']['family'] {
-    openbsd: {
+    'openbsd': {
       # tmux included by default
       $package = false
       $provider = undef
       $source = undef
     }
-    debian: {
+    'debian': {
       $package = 'tmux'
       $provider = undef
       $source = undef
     }
-    redhat: {
+    'redhat': {
       $package = 'tmux'
       $provider = undef
       $source = undef

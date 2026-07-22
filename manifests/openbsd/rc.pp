@@ -49,7 +49,7 @@
 #     settings => [ $dhcpd, $ntpd, $spamd_black ],
 #  }
 #
-define sys::openbsd::rc(
+define sys::openbsd::rc (
   $settings,
   $ensure    = 'file',
   $owner     = 'root',

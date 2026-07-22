@@ -4,12 +4,12 @@
 #
 # Private class, do not use directly.
 #
-class sys::iptables::pre(
+class sys::iptables::pre (
   $ssh_port,
   $ping,
   $lo,
   $iniface,
-){
+) {
   Firewall {
     require => undef,
   }
@@ -17,7 +17,7 @@ class sys::iptables::pre(
   firewall { '000 allow packets with valid state':
     action  => 'accept',
     proto   => 'all',
-    state   => [ 'RELATED', 'ESTABLISHED' ],
+    state   => ['RELATED', 'ESTABLISHED'],
     iniface => $iniface,
   }
 

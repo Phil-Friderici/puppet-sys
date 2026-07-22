@@ -12,7 +12,7 @@
 #  The root directory for all home filesystems.  Should also be a ZFS dataset
 #  on the `home_pool` as well.  Defaults to '/export/home'.
 #
-define sys::solaris::user_ds(
+define sys::solaris::user_ds (
   $ensure    = 'present',
   $home_pool = 'rpool',
   $home_root = '/export/home'

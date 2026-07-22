@@ -4,10 +4,10 @@
 #
 class sys::parted::params {
   case $facts['os']['family'] {
-    debian: {
+    'debian': {
       $package = 'parted'
     }
-    redhat: {
+    'redhat': {
       $package = 'parted'
     }
     default: {

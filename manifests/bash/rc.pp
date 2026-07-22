@@ -39,7 +39,7 @@
 #  Advanced usage only.  The template to use when generating the bash
 #  resource file, defaults to "sys/bash/${::osfamily}.erb".
 #
-define sys::bash::rc(
+define sys::bash::rc (
   $ensure     = 'present',
   $group      = undef,
   $home       = undef,

@@ -12,7 +12,7 @@
 #  The name of the package to install; the default depends on the OS, most
 #  likely it is 'sysstat' or false if it's built-in to the OS.
 #
-class sys::stat(
+class sys::stat (
   $ensure  = 'installed',
   $package = $sys::stat::params::package,
 ) inherits sys::stat::params {

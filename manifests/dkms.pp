@@ -10,11 +10,11 @@
 # [*package*]
 #  The name of the DKMS package, defaults to 'dkms'.
 #
-class sys::dkms(
+class sys::dkms (
   $ensure  = 'installed',
   $package = 'dkms',
-){
-  if $::kernel != 'Linux' {
+) {
+  if $facts['kernel'] != 'Linux' {
     fail("DKMS support is only for Linux kernels.\n")
   }
 

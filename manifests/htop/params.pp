@@ -4,10 +4,10 @@
 #
 class sys::htop::params {
   case $facts['os']['family'] {
-    debian: {
+    'debian': {
       $package = 'htop'
     }
-    redhat: {
+    'redhat': {
       $package = 'htop'
     }
     default: {

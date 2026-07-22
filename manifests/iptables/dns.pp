@@ -21,13 +21,13 @@
 # [*source*]
 #  Source for firewall resources, default is undefined.
 #
-class sys::iptables::dns(
+class sys::iptables::dns (
   $tcp_port = '53',
   $udp_port = '53',
   $iniface  = undef,
   $priority = '100',
   $source   = undef,
-){
+) {
   include sys::iptables
 
   firewall { "${priority} allow dns tcp":

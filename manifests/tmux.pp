@@ -17,7 +17,7 @@
 # [*source*]
 #  The source to use for the package; the default is undef.
 #
-class sys::tmux(
+class sys::tmux (
   $ensure   = 'installed',
   $package  = $sys::tmux::params::package,
   $provider = $sys::tmux::params::provider,

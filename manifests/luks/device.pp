@@ -43,7 +43,7 @@
 #     key    => 's3kr1t',
 #   }
 #
-define sys::luks::device(
+define sys::luks::device (
   $device,
   $key,
   $base64 = false,

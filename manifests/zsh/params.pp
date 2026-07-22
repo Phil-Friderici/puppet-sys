@@ -4,20 +4,20 @@
 #
 class sys::zsh::params {
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       $package = false
       $path    = '/bin/zsh'
       $source  = undef
       $provider = undef
     }
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $package = 'zsh'
       $path    = '/usr/local/bin/zsh'
       $source  = $sys::openbsd::pkg::source
       $provider = undef
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $provider = 'pkg'
       $package  = 'shell/zsh'
@@ -25,13 +25,13 @@ class sys::zsh::params {
       $source  = undef
       $provider = undef
     }
-    redhat: {
+    'redhat': {
       $package = 'zsh'
       $path    = '/bin/zsh'
       $source  = undef
       $provider = undef
     }
-    debian: {
+    'debian': {
       $package = 'zsh'
       $path    = '/bin/zsh'
       $source  = undef

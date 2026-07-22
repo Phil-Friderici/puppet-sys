@@ -4,17 +4,17 @@
 #
 class sys::gcc::params {
   case $facts['os']['family'] {
-    openbsd: {
+    'openbsd': {
       # GCC included by default on OpenBSD.
       $packages = false
     }
-    solaris: {
+    'solaris': {
       $packages = ['developer/gnu']
     }
-    debian: {
+    'debian': {
       $packages = ['gcc', 'g++', 'make']
     }
-    redhat: {
+    'redhat': {
       $packages = ['gcc', 'gcc-c++', 'make']
     }
     default: {

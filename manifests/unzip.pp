@@ -2,7 +2,7 @@
 #
 # Installs the unzip extraction utility.
 #
-class sys::unzip(
+class sys::unzip (
   $ensure   = 'installed',
   $package  = $sys::unzip::params::package,
   $source   = $sys::unzip::params::source,

@@ -18,7 +18,8 @@ describe 'sys::htop' do
         'operatingsystemrelease' => ['8'],
       },
     ],
-  ).each do |os, os_facts|    context "on #{os}" do
+  ).each do |os, os_facts|
+    context "on #{os}" do
       let(:facts) { os_facts }
 
       it { is_expected.to compile.with_all_deps }

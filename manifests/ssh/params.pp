@@ -4,13 +4,13 @@
 #
 class sys::ssh::params {
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       $client = false
       $server = false
       $provider = undef
       $sandbox = undef
     }
-    openbsd: {
+    'openbsd': {
       # Installed by default on OpenBSD
       $client = false
       $server = false
@@ -18,26 +18,28 @@ class sys::ssh::params {
       $use_pam = false
       $provider = undef
 
-      if versioncmp($::kernelmajversion, '5.0') >= 0 {
+      # kernelmajversion wasn't converted, we can rebuild it from kernelversion
+      $kernelmajversion = Integer(split($facts['kernelversion'], '\.')[0])
+      if versioncmp($kernelmajversion, '5.0') >= 0 {
         $ecdsa = true
         $sandbox = true
       } else {
         $ecdsa = false
       }
 
-      if versioncmp($::kernelmajversion, '5.5') >= 0 {
+      if versioncmp($kernelmajversion, '5.5') >= 0 {
         $ed25519 = true
       } else {
         $ed25519 = false
       }
 
-      if versioncmp($::kernelmajversion, '5.7') >= 0 {
+      if versioncmp($kernelmajversion, '5.7') >= 0 {
         $service = 'sshd'
       } else {
         $service = false
       }
     }
-    solaris: {
+    'solaris': {
       if $facts['os']['release']['full'] < '5.11' {
         fail("SSH module supported only on Solaris 5.11 and above.\n")
       }
@@ -51,7 +53,7 @@ class sys::ssh::params {
       $ed25519 = false
       $sandbox = undef
     }
-    debian: {
+    'debian': {
       if $facts['os']['name'] == 'Ubuntu' {
         $ecdsa_compare = '12'
         $ed25519_compare = '14'
@@ -87,7 +89,7 @@ class sys::ssh::params {
       $provider = undef
       $sandbox = undef
     }
-    redhat: {
+    'redhat': {
       $client = 'openssh-clients'
       $server = 'openssh-server'
       $service = 'sshd'
@@ -105,7 +107,7 @@ class sys::ssh::params {
 
   # Configuration file locations.  Macs are the special snowflake here.
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       $ssh_config  = '/etc/ssh_config'
       $sshd_config = '/etc/sshd_config'
     }

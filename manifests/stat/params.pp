@@ -4,11 +4,11 @@
 #
 class sys::stat::params {
   case $facts['os']['family'] {
-    darwin, openbsd, solaris: {
+    'darwin', 'openbsd', 'solaris': {
       # Unix-derived systems have iostat built in.
       $package = false
     }
-    debian, redhat: {
+    'debian', 'redhat': {
       $package = 'sysstat'
     }
     default: {

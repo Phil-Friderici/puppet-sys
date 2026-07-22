@@ -2,12 +2,11 @@
 #
 # Sets up the SSH service.
 #
-class sys::ssh::service(
+class sys::ssh::service (
   $ensure  = 'running',
   $enable  = true,
   $service = $sys::ssh::params::service,
 ) inherits sys::ssh::params {
-
   if $service {
     service { $service:
       ensure  => $ensure,

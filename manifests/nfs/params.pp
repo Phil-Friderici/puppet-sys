@@ -4,28 +4,28 @@
 #
 class sys::nfs::params {
   case $facts['os']['family'] {
-    darwin: {
+    'darwin': {
       # NFS client and server built-in to OS X.
       $client = false
       $server = false
       $source = undef
       $provider = undef
     }
-    debian: {
+    'debian': {
       # Debian splits up NFS into common/server packages.
       $client = 'nfs-common'
       $server = 'nfs-kernel-server'
       $source = undef
       $provider = undef
     }
-    redhat: {
+    'redhat': {
       # RedHat has everything in one package.
       $client = 'nfs-utils'
       $server = false
       $source = undef
       $provider = undef
     }
-    solaris: {
+    'solaris': {
       # NFS client built into Solaris.
       $client = false
       $server = 'service/file-system/nfs'

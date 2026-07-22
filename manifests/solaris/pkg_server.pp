@@ -20,13 +20,13 @@
 # [*fmri*]
 #  The base FMRI of the pkg service, defaults to 'pkg/server'.
 #
-define sys::solaris::pkg_server(
+define sys::solaris::pkg_server (
   $inst_root,
   $port,
   $proxy_base,
   $address     = '127.0.0.1',
   $fmri        = 'pkg/server'
-){
+) {
   $service = "pkg/server:${name}"
   $config = "/root/pkg5-${name}"
 
@@ -39,7 +39,7 @@ define sys::solaris::pkg_server(
   }
 
   Exec {
-    path => '/usr/sbin'
+    path => '/usr/sbin',
   }
 
   exec { "create-${service}":

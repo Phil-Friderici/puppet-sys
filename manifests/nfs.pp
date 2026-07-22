@@ -17,7 +17,7 @@
 #  The provider of the NFS package, default is platform-dependent (but
 #  most likely undefined).
 #
-class sys::nfs(
+class sys::nfs (
   $ensure   = 'installed',
   $package  = $sys::nfs::params::client,
   $source   = $sys::nfs::params::source,

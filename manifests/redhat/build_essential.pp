@@ -12,6 +12,6 @@ class sys::redhat::build_essential {
   }
 
   package { 'kernel-headers':
-    ensure  => installed,
+    ensure => installed,
   }
 }

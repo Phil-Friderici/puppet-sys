@@ -2,7 +2,7 @@
 #
 # Installs the SSH client and server packages, if necessary.
 #
-class sys::ssh::install(
+class sys::ssh::install (
   $ensure   = 'installed',
   $client   = $sys::ssh::params::client,
   $server   = $sys::ssh::params::server,

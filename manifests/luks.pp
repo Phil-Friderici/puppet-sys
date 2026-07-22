@@ -2,7 +2,7 @@
 #
 # Installs cryptsetup, necessary for LUKS (Linux Unifed Key Setup).
 #
-class sys::luks(
+class sys::luks (
   $ensure  = 'installed',
   $package = $sys::luks::params::package,
 ) inherits sys::luks::params {

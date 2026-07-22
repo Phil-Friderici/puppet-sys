@@ -78,7 +78,7 @@
 #    flowsrc => '10.0.0.1',
 #  }
 #
-define sys::openbsd::interface(
+define sys::openbsd::interface (
   $ensure      = 'present',
   $ip          = undef,
   $addr_family = 'inet',
@@ -96,7 +96,6 @@ define sys::openbsd::interface(
   $syncdev     = false,
   $template    = 'sys/openbsd/interface.erb',
 ) {
-
   if $title =~ /^pfsync\d+$/ {
     validate_string($syncdev)
   } elsif $title =~ /^pflow\d+$/ {
@@ -105,7 +104,7 @@ define sys::openbsd::interface(
   } else {
     # Fail if an IP address isn't provided for an interface that doesn't
     # use DHCP or is for PF logging.
-    if ($title !~ /^pflog\d+$/ and $ip != 'dhcp' and ! is_ip_address($ip)){
+    if ($title !~ /^pflog\d+$/ and $ip != 'dhcp' and ! is_ip_address($ip)) {
       fail('Invalid IP address.')
     }
   }

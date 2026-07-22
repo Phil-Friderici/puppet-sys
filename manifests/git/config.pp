@@ -24,14 +24,14 @@
 # [*binary*]
 #  Path to the git binary, defaults to '/usr/bin/git'.
 #
-define sys::git::config(
+define sys::git::config (
   $setting,
   $value,
   $repo,
   $user   = 'root',
   $scope  = 'local',
   $binary = '/usr/bin/git',
-){
+) {
   if ! ($scope in ['global', 'local', 'system']) {
     fail("Invalid scope value.\n")
   }

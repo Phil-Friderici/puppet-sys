@@ -1,6 +1,6 @@
 # This define sets a ZFS property to the given value on the dataset with the same
 # name as the define.
-define sys::solaris::zfs::property(
+define sys::solaris::zfs::property (
   $property,
   $value,
   $dataset = undef,
@@ -20,7 +20,7 @@ define sys::solaris::zfs::property(
   $property_set = "zfs get -H -o value ${property} ${zfs_dataset} | grep '^${value}$'"
 
   exec { $set_property:
-    path    => [ '/sbin', '/usr/sbin', '/bin', '/usr/bin' ],
+    path    => ['/sbin', '/usr/sbin', '/bin', '/usr/bin'],
     unless  => $property_set,
     require => Zfs[$zfs_dataset],
   }

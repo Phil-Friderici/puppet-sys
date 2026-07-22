@@ -4,19 +4,23 @@
 #
 class sys::screen::params {
   case $facts['os']['family'] {
-    openbsd: {
+    'openbsd': {
       include sys::openbsd::pkg
       $package = 'screen'
       $source = undef
-      if versioncmp($::kernelmajversion, '5.5') >= 0 {
+
+      # kernelmajversion wasn't converted, we can rebuild it from kernelversion
+      $kernelmajversion = Integer(split($facts['kernelversion'], '\.')[0])
+
+      if versioncmp($kernelmajversion, '5.5') >= 0 {
         $ensure = '4.0.3p4'
-      } elsif versioncmp($::kernelmajversion, '5.3') >= 0 {
+      } elsif versioncmp($kernelmajversion, '5.3') >= 0 {
         $ensure = '4.0.3p3'
       } else {
         $ensure = '4.0.3p2'
       }
     }
-    solaris: {
+    'solaris': {
       include sys::solaris
       $ensure = 'installed'
       $package = 'terminal/screen'
