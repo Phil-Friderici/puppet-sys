@@ -28,4 +28,20 @@ describe 'sys::fetch' do
       it { is_expected.to compile }
     end
   end
+
+  on_supported_os(
+    supported_os: [
+      {
+        'operatingsystem' => 'Windows',
+        'operatingsystemrelease' => ['2022'],
+      },
+    ],
+  ).each do |os, os_facts|
+    context "on #{os}" do
+      let(:facts) { os_facts }
+      let(:params) { { destination: 't:/est/ing' } }
+
+      it { is_expected.to compile }
+    end
+  end
 end

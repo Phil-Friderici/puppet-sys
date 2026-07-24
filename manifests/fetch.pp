@@ -45,7 +45,7 @@ define sys::fetch (
 ) {
   if ($redownload and $facts['os']['family'] != 'windows') {
     $unless  = "test -s ${destination}"
-    $creates = undef
+    $creates = $destination
   } else {
     $unless  = undef
     $creates = $destination
@@ -62,10 +62,12 @@ define sys::fetch (
       $output_opt = "--output '${destination}'"
       $dl_cmd = '/usr/bin/curl --silent --location'
       $provider = undef
+      $fetch_require = undef
     }
     'windows': {
       # Use PowerShell provider (via joshcooper's powershell module).
       $provider = 'powershell'
+      $fetch_require = undef
     }
     default: {
       # Use wget everywhere else.
